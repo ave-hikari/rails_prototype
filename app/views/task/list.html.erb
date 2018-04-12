@@ -1,19 +1,31 @@
-<h1>Tasks</h1>
+<h1>タスクリスト</h1>
 <table border="0">
   <tr>
     <th>ID</th>
     <th>タスク名</th>
     <th>期限</th>
     <th></th>
-    <th>削除</th>
+    <th></th>
+    <th></th>
   </tr>
   <% @task.each do |item| %>
+  <% if item.delete_flag == false %>
   <tr>
     <td><%= item.id %></td>
     <td><%= item.task_name %></td>
     <td><%= item.term_at %></td>
-    <td>作成日から<%= (Date.today - Date.parse(item.created_at.to_s)).to_i %>日経過</td>
-    <td><%= '削除する' if item.delete_flag == false %></td>
+    <td>期限まであと<%= (Date.parse(item.term_at.to_s) - Date.today).to_i %>日</td>
+    <td>
+      <% if item.disp_flag == false %>
+      <%= link_to "完了！" %>
+      <% else %>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to "削除する" %>
+    </td>
   </tr>
+  <% else %>
+  <% end %>
   <% end %>
 </table>
