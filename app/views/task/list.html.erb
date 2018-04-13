@@ -6,19 +6,18 @@
     <th>期限</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
   <% @task.each do |item| %>
   <% if item.delete_flag == false %>
   <tr>
     <td><%= item.id %></td>
     <td><%= item.task_name %></td>
-    <td><%= item.term_at %></td>
-    <td>期限まであと<%= (Date.parse(item.term_at.to_s) - Date.today).to_i %>日</td>
+    <td><%= item.disp_term_at %></td>
     <td>
       <% if item.disp_flag == false %>
       <%= link_to "完了！" %>
       <% else %>
+      実施済み
       <% end %>
     </td>
     <td>
