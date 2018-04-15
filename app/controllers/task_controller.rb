@@ -13,10 +13,17 @@ class TaskController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       flash[:success] = "success!!"
-      redirect_to @task
+      redirect_to action: 'list'
     else
       render 'new'
     end
+  end
+
+  # 削除
+  def delete
+    # TODO: resourcesを指定しない場合でのupdate,deleteでidを渡すことはできないのか？
+    @task = Task.find(params[:id])
+    @task.destloy
   end
 
   private

@@ -21,7 +21,7 @@
       <% end %>
     </td>
     <td>
-      <%= link_to "削除する" %>
+      <%= link_to "削除する", task_delete_path(item), method: :delete %>
     </td>
   </tr>
   <% else %>
